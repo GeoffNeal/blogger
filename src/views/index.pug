@@ -1,5 +1,10 @@
 extends layout
 
 block content
-	md-content
-		h1.md-display-4 Main title
+	div.container(ng-controller="mainCtrl" layout="row" flex)
+		md-sidenav.md-whiteframe-4dp(md-is-locked-open="true")
+			md-list
+				md-list-item
+					md-button ABOUT
+		md-content.lightblue#content(flex)
+			h1.md-display-3 Main title

@@ -6,9 +6,10 @@ head
   meta(name="description", content="Blogger is a platform that allows it's users to create content about whatever they want and post it.")
   title Blogger | #{title} &#150; Post your article
   link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic")
+  link(rel='stylesheet' type='text/css' href='css/angular-material.min.css')
   link(rel='stylesheet' type='text/css' href='css/main.css')
 
-  body(ng-app="blogger")
+  body(ng-app="blogger" layout="column")
     // load navbar.jade
     include navbar
 
@@ -16,7 +17,7 @@ head
     block content
 
     // footer
-    p &copy; Blogger 2016
+    //p &copy; Blogger 2016
 
     //scripts
     
