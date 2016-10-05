@@ -1,0 +1,4 @@
+md-sidenav.md-whiteframe-4dp(md-is-locked-open="true")
+	md-list
+		md-list-item(ng-repeat="user in users")
+			md-button(ng-click="selectUser(user)") {{user.name}}

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	div.container(ng-controller="registerCtrl as rc" layout="row" flex)
+	
+		// Load the sidenav
+		include sidenav
+
+		md-content.lightblue#content(flex)
+			form(ng-submit="rc.registerNewUser()")
+				h1.md-display-3 Sign Up
+				md-input-container
+					label Full Name
+					input(type="text" placeholder="First and Last" ng-model="rc.name" required)
+				md-input-container
+					label Email
+					input(type="email" placeholder="yourEmail@example.com" ng-model="rc.email" required)
+				md-input-container
+					label Password
+					input(type="password" placeholder="Enter your password" ng-model="rc.password" required)
+				md-input-container
+					label Confirm Password
+					input(type="password" placeholder="Confirm your password" ng-model="rc.confirmPassword" required)
+				md-button.md-primary(type="submit") Sign Up

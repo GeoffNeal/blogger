@@ -1,10 +1,12 @@
 extends layout
 
 block content
-	div.container(ng-controller="mainCtrl" layout="row" flex)
-		md-sidenav.md-whiteframe-4dp(md-is-locked-open="true")
-			md-list
-				md-list-item
-					md-button ABOUT
+	div.container(ng-controller="mainCtrl as mc" layout="row" flex)
+
+		// Load the sidenav
+		include sidenav
+
 		md-content.lightblue#content(flex)
 			h1.md-display-3 Main title
+			h3.md-display-1 {{selectedUser.name}}
+			p {{selectedUser.content}}
