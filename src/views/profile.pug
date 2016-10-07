@@ -1,4 +1,25 @@
 extends layout
 
 block content
-	h1.md-display-3 You are signed in!
+	div.container(ng-controller="profileCtrl as pc" layout="row" layout-align="center" flex)
+		md-content(layout="column" flex)
+			h1.md-display-3 Welcome #{name}&#33;
+
+		
+			form(ng-submit="pc.updateUser()")
+
+				md-input-container
+					label(for="summary") ABOUT YOU:
+					textarea#summary(name="summary" placeholder="Say something about yourself..." ng-model="pc.summary")
+				md-button(type="submit") post
+
+			p(flex) {{user.summary}}
+
+		// h4.md-display-1 {{message}}
+		md-sidenav.md-padding.md-whiteframe-4dp(md-is-locked-open="true" layout="column" flex="40")
+			div(ng-repeat="post in user.posts")
+				h2.md-display-2 {{post.title}}
+				p {{post.content}}
+				p {{post.postDate | date : "dd MMM, y - HH:mm"}}
+				p By {{post.author}}
+				md-button(ng-click="pc.deletePost($index)") delete

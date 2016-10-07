@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	div.container(ng-controller="registerCtrl as rc" layout="row" flex)
+	
+		// Load the sidenav
+		include sidenav
+
+		md-content.lightblue#content(flex)
+			form(method="post" action="/login")
+				h1.md-display-3 Log In
+				md-input-container
+					label Email
+					input(type="email" name="email" placeholder="yourEmail@example.com" required)
+				md-input-container
+					label Password
+					input(type="password" name="password" placeholder="Enter your password" required)
+				md-button.md-primary(type="submit") Log In

@@ -16,6 +16,10 @@ var BlogPostSchema = new mongoose.Schema({
 		required: true,
 		trim: true
 	},
+	author_id: {
+		type: String,
+		required: true
+	},
 	postDate: {
 		type: Date,
 		default: Date.now

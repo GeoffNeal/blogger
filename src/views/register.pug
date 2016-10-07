@@ -7,18 +7,18 @@ block content
 		include sidenav
 
 		md-content.lightblue#content(flex)
-			form(ng-submit="rc.registerNewUser()")
+			form(method="post" action="/register")
 				h1.md-display-3 Sign Up
 				md-input-container
 					label Full Name
-					input(type="text" placeholder="First and Last" ng-model="rc.name" required)
+					input(type="text" name="name" placeholder="First and Last" required)
 				md-input-container
 					label Email
-					input(type="email" placeholder="yourEmail@example.com" ng-model="rc.email" required)
+					input(type="email"  name="email" placeholder="yourEmail@example.com" required)
 				md-input-container
 					label Password
-					input(type="password" placeholder="Enter your password" ng-model="rc.password" required)
+					input(type="password" name="password" placeholder="Enter your password" required)
 				md-input-container
 					label Confirm Password
-					input(type="password" placeholder="Confirm your password" ng-model="rc.confirmPassword" required)
+					input(type="password" name="confirmPassword" placeholder="Confirm your password" required)
 				md-button.md-primary(type="submit") Sign Up

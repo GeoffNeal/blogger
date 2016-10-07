@@ -10,7 +10,15 @@ angular.module("blogger")
 		console.log(response.data.users);
 	});
 
+	dataService.getBlogPosts(function (response) {
+		$scope.blogPosts = response.data.blogPosts;
+	});
+
 	$scope.selectUser = function (user) {
-		$scope.selectedUser = user;
+		if(!user) {
+			$scope.selectedUser = null;
+		} else {
+			$scope.selectedUser = user;
+		}
 	}
 });

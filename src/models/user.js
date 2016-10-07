@@ -21,6 +21,9 @@ var UserSchema = new mongoose.Schema({
 	posts: {
 		type: Array
 	},
+	summary: {
+		type: String
+	},
 	signUpDate: {
 		type: Date,
 		default: Date.now

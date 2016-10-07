@@ -1,4 +1,6 @@
-md-sidenav.md-whiteframe-4dp(md-is-locked-open="true")
-	md-list
-		md-list-item(ng-repeat="user in users")
-			md-button(ng-click="selectUser(user)") {{user.name}}
+md-sidenav.md-whiteframe-4dp(md-is-locked-open="true" layout="column" flex="20")
+	md-list(flex)
+		md-list-item(layout="row")
+			md-button(ng-click="selectUser()" flex) all
+		md-list-item(ng-repeat="user in users" layout="row")
+			md-button(ng-click="selectUser(user)" flex) {{user.name}}

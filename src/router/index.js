@@ -20,6 +20,7 @@ router.get("/register", mid.loggedOut, function (req, res, next) {
 
 //POST /register
 router.post("/register", function (req, res, next) {
+	console.log(req.body);
 	//Check the user entered all fields
 	if(req.body.name &&
 		req.body.email &&
@@ -92,6 +93,40 @@ router.post("/login", function (req, res, next) {
 	}
 });
 
+//GET /users (The databse query to get all users)
+router.get("/users", function (req, res, next) {
+	User.find({}, function (err, users) {
+		if(err) {
+			return next(err);
+		}
+		return res.json({users: users});
+	});
+});
+
+//GET /user._id (The databse query to get a single user)
+router.get("/user", function (req, res, next) {
+	User.find({_id: req.session.userId}, function (err, user) {
+		if(err) {
+			return next(err);
+		}
+		//console.log(user) //Returns an array?
+		return res.json({user: user});
+	});
+});
+
+//PUT /user._id (The databse query to update a single user)
+router.put("/user/:id", function (req, res, next) {
+	var newData = req.body;
+	console.log(newData);
+	User.findByIdAndUpdate(req.params.id, newData, {new: true}, function (err, user) {
+		if(err) {
+			return next(err);
+		}
+		//console.log(user) //Returns an array?
+		return res.json({user: user, message: "User info updated."});
+	});
+});
+
 //GET /blogPost (The pug template)
 router.get("/blogPost", function (req, res, next) {
 	return res.render("blogPost", {title: "Post an item"});
@@ -101,13 +136,14 @@ router.get("/blogPost", function (req, res, next) {
 router.post("/blogPost", function (req, res, next) {
 
 	//Check that all fields have been filled in
-	if(req.body.title && req.body.content) {
+	if(req.body.newPostTitle && req.body.newPostContent && req.body.newPostAuthor && req.body.newPostAuthorId) {
 
 		//Create object containing post's data
 		var postData = {
-			title: req.body.title,
-			content: req.body.content,
-			author: "Sarah White"
+			title: req.body.newPostTitle,
+			content: req.body.newPostContent,
+			author: req.body.newPostAuthor,
+			author_id: req.body.newPostAuthorId
 		}
 
 		//Use schema's `create` method to insert document into Mongo
@@ -116,7 +152,7 @@ router.post("/blogPost", function (req, res, next) {
 				return next(error);
 			} else {
 				console.log(blogPost);
-				return res.redirect("/news");
+				return res.json({blogPost: blogPost});
 			}
 		});
 	} else {
@@ -144,7 +180,7 @@ router.delete("/blogPosts/:id", function (req, res, next) {
 			return next(err);
 		}
 		blogPost.remove();
-		return res.redirect("/news");
+		return res.redirect("/profile");
 	});
 });
 
@@ -178,6 +214,11 @@ router.get("/logout", function (req, res, next) {
 //GET /about
 router.get("/about", function (req, res, next) {
 	return res.render("about", {title: "About"});
+});
+
+//GET /createPost
+router.get("/createPost", function (req, res, next) {
+	return res.render("createPost", {title: "Create a new article"});
 });
 
 router.get("/mockUsers", function (req, res, next) {

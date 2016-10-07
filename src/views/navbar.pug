@@ -1,4 +1,10 @@
-md-toolbar
-  h1 #{title}
+md-toolbar.md-padding(layout="row" layout-align="center center")
+  h1(flex) #{title}
   md-button(href="/") HOME
-  md-button(href="/register") SIGN UP
+  if currentUser
+    md-button(href="/createPost") CREATE POST
+    md-button(href="/profile") PROFILE
+    md-button(href="/logout") LOG OUT
+  if !currentUser
+    md-button(href="/login") LOG IN
+    md-button(href="/register") SIGN UP
