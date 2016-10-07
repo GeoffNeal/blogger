@@ -2,7 +2,7 @@ extends layout
 
 block content
 	div.container(ng-controller="profileCtrl as pc" layout="row" layout-align="center" flex)
-		md-content(layout="column" flex)
+		md-content.md-padding(layout="column" flex)
 			h1.md-display-3 Welcome #{name}&#33;
 
 		
@@ -19,7 +19,7 @@ block content
 		md-sidenav.md-padding.md-whiteframe-4dp(md-is-locked-open="true" layout="column" flex="40")
 			div(ng-repeat="post in user.posts")
 				h2.md-display-2 {{post.title}}
-				p {{post.content}}
 				p {{post.postDate | date : "dd MMM, y - HH:mm"}}
+				p {{post.content}}
 				p By {{post.author}}
 				md-button(ng-click="pc.deletePost($index)") delete

@@ -1,13 +1,14 @@
 extends layout
 
 block content
-	div.container(ng-controller="createPostCtrl as cpc" layout="row" flex)
-
-		form(ng-submit="cpc.createNewPost()")
-			md-input-container
-				label(for="newPostTitle") Title
-				input#newPostTitle(name="newPostTitle" placeholder="What is it about?" ng-model="cpc.newPostTitle")
-			md-input-container
-				label(for="newPostContent") New Article:
-				textarea#newPostContent(name="newPostContent" placeholder="Got something to say? Say it here..." ng-model="cpc.newPostContent")
-			md-button(type="submit") POST
+	div.container(ng-controller="createPostCtrl as cpc" layout="row" layout-align="center center" flex)
+		div.md-whiteframe-z2(flex="50")
+			md-content.md-padding
+				form(layout="column" ng-submit="cpc.createNewPost()")
+					md-input-container(flex="5")
+						label(for="newPostTitle") Title
+						input#newPostTitle(name="newPostTitle" placeholder="What is it about?" ng-model="cpc.newPostTitle")
+					md-input-container
+						label(for="newPostContent") New Article:
+						textarea#newPostContent(name="newPostContent" placeholder="Got something to say? Say it here..." ng-model="cpc.newPostContent")
+					md-button(type="submit") POST
