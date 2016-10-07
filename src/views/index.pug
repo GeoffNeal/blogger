@@ -6,13 +6,14 @@ block content
 		// Load the sidenav
 		include sidenav
 
-		md-content.md-padding#content(flex="80")
+		md-content.md-padding(layout="column" flex="80")
 			h1.md-display-3 Main title
 			h3.md-display-2 {{selectedUser.name}}
 			p {{selectedUser.summary}}
-
-			div(ng-repeat="post in blogPosts | filter : {author_id: selectedUser._id} | orderBy : postDate")
-				h2.md-display-1 {{post.title}}
-				p Posted: {{post.postDate | date : "dd MMM, y - HH:mm"}}
-				p {{post.content}}
-				p By {{post.author}}
+			div.md-padding(layout="row" layout-align="center")
+				md-list(flex="50")
+					md-list-item(ng-repeat="post in blogPosts | filter : {author_id: selectedUser._id} | orderBy : postDate" layout="column")
+						h2.md-display-1 {{post.title}}
+						p Posted: {{post.postDate | date : "dd MMM, y - HH:mm"}}
+						p {{post.content | blurbFilter}}
+						p By {{post.author}}

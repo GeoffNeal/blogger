@@ -5,7 +5,7 @@ block content
 		div.md-whiteframe-z2(flex="50")
 			md-content.md-padding
 				form(layout="column" ng-submit="cpc.createNewPost()")
-					md-input-container(flex="5")
+					md-input-container
 						label(for="newPostTitle") Title
 						input#newPostTitle(name="newPostTitle" placeholder="What is it about?" ng-model="cpc.newPostTitle")
 					md-input-container

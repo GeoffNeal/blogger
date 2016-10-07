@@ -6,11 +6,11 @@ block content
 			h1.md-display-3 Welcome #{name}&#33;
 
 		
-			form(ng-submit="pc.updateUser()")
+			form(ng-submit="updateUserSummary()")
 
 				md-input-container
 					label(for="summary") ABOUT YOU:
-					textarea#summary(name="summary" placeholder="Say something about yourself..." ng-model="pc.summary")
+					textarea#summary(name="summary" placeholder="Say something about yourself..." ng-model="summary")
 				md-button(type="submit") post
 
 			p(flex) {{user.summary}}
@@ -22,4 +22,4 @@ block content
 				p {{post.postDate | date : "dd MMM, y - HH:mm"}}
 				p {{post.content}}
 				p By {{post.author}}
-				md-button(ng-click="pc.deletePost($index)") delete
+				md-button(ng-click="deletePost($index)") delete

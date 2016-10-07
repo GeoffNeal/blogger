@@ -14,6 +14,7 @@ webpackJsonp([0],[
 	__webpack_require__(7);
 	__webpack_require__(8);
 	__webpack_require__(9);
+	__webpack_require__(10);
 
 /***/ },
 /* 1 */,
@@ -868,23 +869,35 @@ webpackJsonp([0],[
 			$scope.user = response.data.user[0];
 		});
 
-		this.updateUser = function () {
+		$scope.updateUserSummary = function () {
 			console.log($scope.user);
-			$scope.user.summary = this.summary;
-			dataService.updateUser($scope.user, function (response) {
-				//Put this in a toast
-				$scope.message = response.data.message;
-				console.log(response.data);
-			});
-		}
-
-		this.deletePost = function (index) {
-			dataService.deleteBlogPost($scope.user.posts, index);
-			dataService.updateUser($scope.user, function (response) {
+			$scope.user.summary = $scope.summary;
+			dataService.updateUser({
+				user: $scope.user,
+				message: "Your summary has been updated, " + $scope.user.name
+			}, function (response) {
 				//Put this in a toast
 				$mdToast.show(
 					$mdToast.simple()
-						.textContent(reponse.data.message)
+						.textContent(response.data.message)
+						.position($scope.getToastPosition())
+						.hideDelay(3000)
+				);
+				// $scope.message = response.data.message;
+				// console.log(response.data);
+			});
+		}
+
+		$scope.deletePost = function (index) {
+			dataService.deleteBlogPost($scope.user.posts, index);
+			dataService.updateUser({
+				user: $scope.user,
+				message: "Your post has been deleted, " + $scope.user.name
+			}, function (response) {
+				//Put this in a toast
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent(response.data.message)
 						.position($scope.getToastPosition())
 						.hideDelay(3000)
 				);
@@ -903,7 +916,22 @@ webpackJsonp([0],[
 	var angular = __webpack_require__(1);
 
 	angular.module("blogger")
-	.controller("createPostCtrl", function ($scope, dataService) {
+	.controller("createPostCtrl", function ($scope, $mdToast, dataService) {
+
+		$scope.toastPosition = {
+			bottom: true,
+			top: false,
+			left: false,
+			right: true
+		};
+
+		$scope.getToastPosition = function () {
+			return Object.keys($scope.toastPosition)
+				.filter(function (pos) {
+					return $scope.toastPosition[pos];
+				})
+				.join(' ');
+		};
 
 		dataService.getUser(function (response) {
 			$scope.user = response.data.user[0];
@@ -920,7 +948,17 @@ webpackJsonp([0],[
 			dataService.createPost(postData, function (response) {
 				console.log(response.data.blogPost);
 				$scope.user.posts.push(response.data.blogPost);
-				dataService.updateUser($scope.user, function (response) {
+				dataService.updateUser({
+					user: $scope.user,
+					message: "Your article has been posted, " + $scope.user.name
+				}, function (response) {
+					//Put this in a toast
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent(response.data.message)
+							.position($scope.getToastPosition())
+							.hideDelay(3000)
+					);
 					console.log(response.data);
 				});
 			});
@@ -929,6 +967,37 @@ webpackJsonp([0],[
 
 /***/ },
 /* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var angular = __webpack_require__(1);
+
+	angular.module("blogger")
+	.filter("blurbFilter", function () {
+		return function (input) {
+			var out = input;
+			console.log(input.length);
+			// console.log(input[0]);
+			if(input.length > 15) {
+				console.log(typeof out.split(''));
+				out = out.split('');
+				// var arr = Object.keys(out).map(function (key) {
+				// 	return out[key];
+				// });
+				// console.log(typeof arr);
+				console.log(out.splice(0, 15, "...").join(''));
+				// out = splice(15, (input.length - 15), "...");
+				out = out.splice(15, out.length, "...").join('');
+				return out;
+			} else {
+				return out;
+			}	
+		}
+	});
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -949,7 +1018,7 @@ webpackJsonp([0],[
 		}
 
 		//Delete a post
-		this.deleteBlogPost = function (userBlogPostArray, index, callback) {
+		this.deleteBlogPost = function (userBlogPostArray, index) {
 			console.log(index);
 			$http.delete("/blogPosts/" + userBlogPostArray[index]._id);
 			userBlogPostArray.splice(index, 1);
@@ -966,8 +1035,8 @@ webpackJsonp([0],[
 		}
 
 		this.updateUser = function (newUserData, callback) {
-			console.log(newUserData._id);
-			$http.put("/user/" + newUserData._id, newUserData).then(callback);
+			console.log(newUserData.user._id);
+			$http.put("/user/" + newUserData.user._id, newUserData).then(callback);
 		}
 
 		this.redirect = function (location) {

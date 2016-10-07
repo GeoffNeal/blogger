@@ -116,14 +116,14 @@ router.get("/user", function (req, res, next) {
 
 //PUT /user._id (The databse query to update a single user)
 router.put("/user/:id", function (req, res, next) {
-	var newData = req.body;
+	var newData = req.body.user;
 	console.log(newData);
 	User.findByIdAndUpdate(req.params.id, newData, {new: true}, function (err, user) {
 		if(err) {
 			return next(err);
 		}
 		//console.log(user) //Returns an array?
-		return res.json({user: user, message: "User info updated."});
+		return res.json({user: user, message: req.body.message || "User info updated."});
 	});
 });
 

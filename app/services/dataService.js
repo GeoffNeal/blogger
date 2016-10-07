@@ -16,7 +16,7 @@ angular.module("blogger")
 	}
 
 	//Delete a post
-	this.deleteBlogPost = function (userBlogPostArray, index, callback) {
+	this.deleteBlogPost = function (userBlogPostArray, index) {
 		console.log(index);
 		$http.delete("/blogPosts/" + userBlogPostArray[index]._id);
 		userBlogPostArray.splice(index, 1);
@@ -33,8 +33,8 @@ angular.module("blogger")
 	}
 
 	this.updateUser = function (newUserData, callback) {
-		console.log(newUserData._id);
-		$http.put("/user/" + newUserData._id, newUserData).then(callback);
+		console.log(newUserData.user._id);
+		$http.put("/user/" + newUserData.user._id, newUserData).then(callback);
 	}
 
 	this.redirect = function (location) {

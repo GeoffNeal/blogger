@@ -1,24 +1,21 @@
 extends layout
 
 block content
-	div.container(ng-controller="registerCtrl as rc" layout="row" flex)
-	
-		// Load the sidenav
-		include sidenav
-
-		md-content.lightblue#content(flex)
-			form(method="post" action="/register")
-				h1.md-display-3 Sign Up
-				md-input-container
-					label Full Name
-					input(type="text" name="name" placeholder="First and Last" required)
-				md-input-container
-					label Email
-					input(type="email"  name="email" placeholder="yourEmail@example.com" required)
-				md-input-container
-					label Password
-					input(type="password" name="password" placeholder="Enter your password" required)
-				md-input-container
-					label Confirm Password
-					input(type="password" name="confirmPassword" placeholder="Confirm your password" required)
-				md-button.md-primary(type="submit") Sign Up
+	div.container.md-padding(ng-controller="registerCtrl as rc" layout="row" layout-align="center center" flex)
+		div.md-whiteframe-z2(flex="50")
+			md-content.md-padding
+				form(method="post" action="/register" layout="column")
+					// h1.md-title Sign Up
+					md-input-container
+						label Full Name
+						input(type="text" name="name" placeholder="First and Last" required)
+					md-input-container
+						label Email
+						input(type="email"  name="email" placeholder="yourEmail@example.com" required)
+					md-input-container
+						label Password
+						input(type="password" name="password" placeholder="Enter your password" required)
+					md-input-container
+						label Confirm Password
+						input(type="password" name="confirmPassword" placeholder="Confirm your password" required)
+					md-button.md-primary(type="submit") Sign Up
