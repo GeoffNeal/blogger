@@ -20,6 +20,6 @@ block content
 			div(ng-repeat="post in user.posts")
 				h2.md-display-2 {{post.title}}
 				p {{post.postDate | date : "dd MMM, y - HH:mm"}}
-				p {{post.content}}
+				p {{post.content | blurbFilter}}
 				p By {{post.author}}
 				md-button(ng-click="deletePost($index)") delete
