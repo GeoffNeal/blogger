@@ -1,6 +1,6 @@
 'use strict';
 
-var port = process.env.PORT,
+var port = (process.env.PORT || 3000),
     address = "http://127.0.0.1";
 
 var express = require("express"),
@@ -13,7 +13,7 @@ var express = require("express"),
     router = require("./router");
 
     //Connect to mongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/blogger", function() {
+mongoose.connect((process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/blogger"), function() {
 	console.log("MongoDB connection successful");
 });
 var db = mongoose.connection;
