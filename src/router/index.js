@@ -2,7 +2,6 @@
 
 var express = require("express");
 var router = express.Router();
-var url = require("url");
 var User = require("../models/user");
 var BlogPost = require("../models/blogPost");
 var mid = require("../middleware");

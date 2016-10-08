@@ -4,7 +4,8 @@
   "description": "\"User can post blogs about whatever they want.\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
   },
   "keywords": [
     "Blog",
