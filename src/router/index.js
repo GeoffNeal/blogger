@@ -2,6 +2,7 @@
 
 var express = require("express");
 var router = express.Router();
+var url = require("url");
 var User = require("../models/user");
 var BlogPost = require("../models/blogPost");
 var mid = require("../middleware");
@@ -221,15 +222,22 @@ router.get("/createPost", function (req, res, next) {
 	return res.render("createPost", {title: "Create a new article"});
 });
 
-//GET /postView
+//GET /postView/:id
 router.get("/postView/:id", function (req, res, next) {
 	BlogPost.findById({_id: req.params.id}, function (err, blogPost) {
 		if(err) {
 			return next(err);
 		}
-		console.log(blogPost);
-		return res.render("postView", {title: "Read", postData: blogPost});
+		// console.log(blogPost);
+		req.session.post = blogPost;
+		return res.redirect("/postView");
+		// return res.render("postView", {title: "Read", postData: blogPost});
 	});
+});
+
+//GET /postView
+router.get("/postView", function (req, res, next) {
+	return res.render("postView", {title: "Read", postData: req.session.post});
 });
 
 router.get("/mockUsers", function (req, res, next) {
