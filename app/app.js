@@ -9,5 +9,6 @@ require("./controllers/mainCtrl.js");
 require("./controllers/registerCtrl.js");
 require("./controllers/profileCtrl.js");
 require("./controllers/createPostCtrl.js");
+require("./controllers/postViewCtrl.js");
 require("./filters/blurbFilter.js");
 require("./services/dataService.js");

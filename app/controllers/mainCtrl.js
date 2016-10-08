@@ -21,4 +21,10 @@ angular.module("blogger")
 			$scope.selectedUser = user;
 		}
 	}
+
+	// $scope.getPost = function (post) {
+	// 	dataService.getPost(post, function (response) {
+	// 		$scope.blogPost = response.data.postData;
+	// 	});
+	// }
 });

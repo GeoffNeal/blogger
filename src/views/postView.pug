@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	div.container(layout="row" flex)
+		md-content.md-padding(ng-controller="postViewCtrl" layout="column" flex)
+			h1.md-display-3 #{postData.title}
+			p Posted: {{datePosted | date : "dd MMM, y - HH:mm"}}
+			p #{postData.content}
+			p By #{postData.author}
+	script.
+		postDate="#{postData.postDate}";

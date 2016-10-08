@@ -221,6 +221,17 @@ router.get("/createPost", function (req, res, next) {
 	return res.render("createPost", {title: "Create a new article"});
 });
 
+//GET /postView
+router.get("/postView/:id", function (req, res, next) {
+	BlogPost.findById({_id: req.params.id}, function (err, blogPost) {
+		if(err) {
+			return next(err);
+		}
+		console.log(blogPost);
+		return res.render("postView", {title: "Read", postData: blogPost});
+	});
+});
+
 router.get("/mockUsers", function (req, res, next) {
 	var users = [
 		{

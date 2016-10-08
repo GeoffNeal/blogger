@@ -37,8 +37,16 @@ angular.module("blogger")
 		$http.put("/user/" + newUserData.user._id, newUserData).then(callback);
 	}
 
-	this.redirect = function (location) {
-		console.log(location);
-		$http.get(location);
-	}
+	// this.getPost = function (post, callback) {
+	// 	$http.get("/postView/" + post._id).then(callback);
+	// }
+
+	// this.redirect = function (location, post) {
+	// 	console.log(location);
+	// 	if(post) {
+	// 		$http.post(location, {post: post});
+	// 	} else {
+	// 		$http.get(location);
+	// 	}
+	// }
 });

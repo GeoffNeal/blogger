@@ -15,6 +15,7 @@ webpackJsonp([0],[
 	__webpack_require__(8);
 	__webpack_require__(9);
 	__webpack_require__(10);
+	__webpack_require__(11);
 
 /***/ },
 /* 1 */,
@@ -798,6 +799,12 @@ webpackJsonp([0],[
 				$scope.selectedUser = user;
 			}
 		}
+
+		// $scope.getPost = function (post) {
+		// 	dataService.getPost(post, function (response) {
+		// 		$scope.blogPost = response.data.postData;
+		// 	});
+		// }
 	});
 
 /***/ },
@@ -974,6 +981,24 @@ webpackJsonp([0],[
 	var angular = __webpack_require__(1);
 
 	angular.module("blogger")
+	.controller("postViewCtrl", function ($scope, dataService) {
+		
+		dataService.getBlogPosts(function (response) {
+			$scope.posts = response.data.blogPosts;
+		});
+		
+		$scope.datePosted = new Date(postDate);
+	});
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var angular = __webpack_require__(1);
+
+	angular.module("blogger")
 	.filter("blurbFilter", function () {
 		return function (input) {
 			if(input.length > 150) {
@@ -988,7 +1013,7 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1030,10 +1055,18 @@ webpackJsonp([0],[
 			$http.put("/user/" + newUserData.user._id, newUserData).then(callback);
 		}
 
-		this.redirect = function (location) {
-			console.log(location);
-			$http.get(location);
-		}
+		// this.getPost = function (post, callback) {
+		// 	$http.get("/postView/" + post._id).then(callback);
+		// }
+
+		// this.redirect = function (location, post) {
+		// 	console.log(location);
+		// 	if(post) {
+		// 		$http.post(location, {post: post});
+		// 	} else {
+		// 		$http.get(location);
+		// 	}
+		// }
 	});
 
 /***/ }
