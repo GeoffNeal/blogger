@@ -1,6 +1,6 @@
 'use strict';
 
-var port = 3000,
+var port = process.env.PORT,
     address = "http://127.0.0.1";
 
 var express = require("express"),
