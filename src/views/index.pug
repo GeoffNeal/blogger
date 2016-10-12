@@ -11,7 +11,7 @@ block content
 			p(ng-class="{noDisplay: !selectedUser}") {{selectedUser.summary}}
 			div.md-padding(layout="row")
 				md-list(flex="50")
-					md-list-item.md-whiteframe-z2(style="background-color: steelblue" ng-repeat="post in blogPosts | filter : {author_id: selectedUser._id} | orderBy : postDate" layout="column" layout-margin)
+					md-list-item.md-whiteframe-z2(ng-repeat="post in blogPosts | filter : {author_id: selectedUser._id} | orderBy : postDate" layout="column" layout-margin)
 						h2.md-display-1 {{post.title}}
 						p Posted: {{post.postDate | date : "dd MMM, y - HH:mm"}}
 						p {{post.content | blurbFilter}}

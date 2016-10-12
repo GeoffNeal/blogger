@@ -15,6 +15,7 @@ webpackJsonp([0],[
 	__webpack_require__(8);
 	__webpack_require__(9);
 	__webpack_require__(10);
+	// require("./filters/newLineFilter.js");
 	__webpack_require__(11);
 
 /***/ },
@@ -987,7 +988,9 @@ webpackJsonp([0],[
 			$scope.posts = response.data.blogPosts;
 		});
 		
+		//postDate and postContent are defined in the postView template
 		$scope.datePosted = new Date(postDate);
+		$scope.contentPosted = postContent;
 	});
 
 /***/ },

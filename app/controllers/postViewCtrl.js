@@ -9,5 +9,7 @@ angular.module("blogger")
 		$scope.posts = response.data.blogPosts;
 	});
 	
+	//postDate and postContent are defined in the postView template
 	$scope.datePosted = new Date(postDate);
+	$scope.contentPosted = postContent;
 });
