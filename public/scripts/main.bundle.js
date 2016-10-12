@@ -15,8 +15,8 @@ webpackJsonp([0],[
 	__webpack_require__(8);
 	__webpack_require__(9);
 	__webpack_require__(10);
-	// require("./filters/newLineFilter.js");
 	__webpack_require__(11);
+	__webpack_require__(12);
 
 /***/ },
 /* 1 */,
@@ -1017,6 +1017,24 @@ webpackJsonp([0],[
 
 /***/ },
 /* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var angular = __webpack_require__(1);
+
+	angular.module("blogger")
+	.filter("newLineFilter", function () {
+		return function (input) {
+			//Find all instances of the new line character (\n)
+			var newLine = new RegExp(/\n/g);
+			// console.log(newLine.test(contentPosted));
+			return input + " filter is working";
+		}
+	});
+
+/***/ },
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
