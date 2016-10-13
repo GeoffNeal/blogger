@@ -9,7 +9,7 @@ module.exports = {
     context: __dirname + '/app',
     entry: {
         app: './app.js',
-        vendor: ['angular', 'angular-animate', 'angular-aria', 'angular-material']  
+        vendor: ['angular', 'angular-animate', 'angular-aria', 'angular-material', 'angular-sanitize']  
     },
     output: {
         path: __dirname + '/public/scripts',

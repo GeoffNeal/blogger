@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-angular.module("blogger", ["ngAnimate", "ngMaterial", require("angular-messages")]);
+angular.module("blogger", ["ngAnimate", "ngMaterial", require("angular-messages"), "ngSanitize"]);
 
 // require("./../node_modules/angular-material/angular-material.min.js");
 require("./controllers/mainCtrl.js");

@@ -78,7 +78,7 @@ router.post("/login", function (req, res, next) {
 				return next(err);
 			} else {
 				req.session.userId = user._id;
-				console.dir(req.session.userId.toString());
+				// console.dir(req.session.userId.toString());
 				if(req.session.userId.toString() === "57eb9951784e4943965d7ddf") {
 					return res.redirect("/admin");
 				} else {
@@ -117,7 +117,7 @@ router.get("/user", function (req, res, next) {
 //PUT /user._id (The databse query to update a single user)
 router.put("/user/:id", function (req, res, next) {
 	var newData = req.body.user;
-	console.log(newData);
+	// console.log(newData);
 	User.findByIdAndUpdate(req.params.id, newData, {new: true}, function (err, user) {
 		if(err) {
 			return next(err);
@@ -151,7 +151,7 @@ router.post("/blogPost", function (req, res, next) {
 			if(error) {
 				return next(error);
 			} else {
-				console.log(blogPost);
+				// console.log(blogPost);
 				return res.json({blogPost: blogPost});
 			}
 		});
@@ -236,6 +236,13 @@ router.get("/postView/:id", function (req, res, next) {
 
 //GET /postView
 router.get("/postView", function (req, res, next) {
+	//regex
+	var newLine = /\n/g;
+	if("new line: " + newLine.test(req.session.post.content)) {
+		var str = req.session.post.content.replace(newLine, "br");
+		req.session.post.content = str;
+	};
+	console.log(req.session.post.content);
 	return res.render("postView", {title: "Read", postData: req.session.post});
 });
 

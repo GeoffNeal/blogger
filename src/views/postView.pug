@@ -5,8 +5,8 @@ block content
 		md-content.md-padding(ng-controller="postViewCtrl" layout="column" flex)
 			h1.md-display-3 #{postData.title}
 			p Posted: {{datePosted | date : "dd MMM, y - HH:mm"}}
-			p {{contentPosted}}
+			p(ng-bind-html="contentPosted") 
 			p By #{postData.author}
 	script.
-		postDate="#{postData.postDate}";
-		postContent="#{postData.content}";
+		var postDate="#{postData.postDate}";
+		var postContent="#{postData.content}";
