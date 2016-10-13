@@ -236,9 +236,9 @@ router.get("/postView/:id", function (req, res, next) {
 
 //GET /postView
 router.get("/postView", function (req, res, next) {
-	//regex
+	//regex to detect \n character and replace it with a safe character.
 	var newLine = /\n/g;
-	if("new line: " + newLine.test(req.session.post.content)) {
+	if(newLine.test(req.session.post.content)) {
 		var str = req.session.post.content.replace(newLine, "br");
 		req.session.post.content = str;
 	};
