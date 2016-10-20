@@ -7,6 +7,8 @@ block content
 		include sidenav
 
 		md-content.md-padding(layout="column" flex)
+			div.md-whiteframe-z2.md-padding(layout="row" layout-align="center center" flex="20")
+				h4 You can sign-up and create your own posts, when you do your name will be displayed in the sidebar. If you want to view only posts by a certain author, simply click on the person's name and only their posts will be displayed. To view all posts again just click on the button marked "ALL".
 			h3.md-display-2(ng-class="{noDisplay: !selectedUser}") {{selectedUser.name}}
 			p(ng-class="{noDisplay: !selectedUser}") {{selectedUser.summary}}
 			div.md-padding(layout="row")
