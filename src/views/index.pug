@@ -7,15 +7,17 @@ block content
 		include sidenav
 
 		md-content.md-padding(layout="column" flex)
-			div.md-whiteframe-z2.md-padding(layout="row" layout-align="center center" flex="20")
+			div.md-padding.md-whiteframe-z2.instructions(layout="row" layout-align="center center" flex="20")
 				h4 You can sign-up and create your own posts, when you do your name will be displayed in the sidebar. If you want to view only posts by a certain author, simply click on the person's name and only their posts will be displayed. To view all posts again just click on the button marked "ALL".
-			h3.md-display-2(ng-class="{noDisplay: !selectedUser}") {{selectedUser.name}}
-			p(ng-class="{noDisplay: !selectedUser}") {{selectedUser.summary}}
-			div.md-padding(layout="row")
-				md-list(flex="50")
-					md-list-item.md-whiteframe-z2(ng-repeat="post in blogPosts | filter : {author_id: selectedUser._id} | orderBy : postDate" layout="column" layout-margin)
+			div.md-padding.md-whiteframe-z2(ng-class="{noDisplay: !selectedUser}" layout="row" layout-align="center center" flex="40")
+				div.md-padding.md-whiteframe-z2(layout="column" layout-align="top center" flex)
+					h3.selected-user-name {{selectedUser.name}}
+					p.selected-user-summary(ng-class="{noDisplay: !selectedUser}") {{selectedUser.summary}}
+			div.md-padding(layout="row" layout-align="center top")
+				md-list(flex="60")
+					md-list-item.md-whiteframe-z2(ng-repeat="post in blogPosts | filter : {author_id: selectedUser._id} | orderBy : postDate" layout="column" layout-margin layout-align="top center")
 						h2.md-display-1 {{post.title}}
 						p Posted: {{post.postDate | date : "dd MMM, y - HH:mm"}}
 						p {{post.content | blurbFilter}}
 						p By {{post.author}}
-						a(ng-href="/postView/{{post._id}}") Read
+						a.md-button(ng-href="/postView/{{post._id}}") Read

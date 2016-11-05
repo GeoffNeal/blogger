@@ -1,6 +1,8 @@
 md-sidenav.md-whiteframe-4dp(md-is-locked-open="true" layout="column" flex="20")
-	md-list(flex)
-		md-list-item(layout="row")
-			md-button(ng-click="selectUser()" flex) all
-		md-list-item(ng-repeat="user in users | orderBy : 'name'" layout="row")
-			md-button(ng-click="selectUser(user)" flex) {{user.name}}
+	div.sidenav-container
+		md-list(flex)
+			md-list-item(layout="row")
+				md-button(ng-click="selectUser()" flex) all
+			md-list-item(ng-repeat="user in users | orderBy : 'name'" layout="row")
+				md-button.user-select(ng-click="selectUser(user)" flex) #[i.pe-7s-user]{{user.name}}
+	img(src="/img/SVG/user.svg")

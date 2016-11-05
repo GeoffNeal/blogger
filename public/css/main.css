@@ -1,11 +1,77 @@
-.lightgreen {
-	background-color: lightgreen;
-}
-
-.lightblue {
-	background-color: lightblue;
+body {
+	font-family: 'Abel', sans-serif;
 }
 
 .noDisplay {
 	display: none;
 }
+
+.main-title {
+	font-family: 'Abel', sans-serif;
+}
+
+.separator {
+	font-family: 'Roboto', sans-serif;
+}
+
+.selected-user-name {
+	margin: 0;
+}
+
+.selected-user-summary {
+	margin: 0;
+}
+
+.instructions {
+	text-align: center;
+}
+
+md-toolbar {
+	background-color: #3b45b5!important;
+}
+
+.sidenav-container {
+	position: relative;
+	z-index: 2;
+}
+
+md-sidenav img {
+	position: absolute;
+	left: 0;
+	top: 20%;
+	width: 100%;
+	height: auto;
+	opacity: 0.1;
+}
+
+md-sidenav {
+	position: relative;
+	background-color: #a8c1f7;
+	/*overflow: hidden;*/
+	color: #3b45b5;
+}
+
+.user-select {
+	text-align: left;
+}
+
+.user-select i {
+	font-size: 2em;
+	margin-right: .2em;
+	margin-left: 1em;
+	vertical-align: middle;
+}
+
+.md-button {
+	font-family: 'Roboto', sans-serif;
+}
+
+/*.container,
+md-content {
+	background-color: #666;
+	color: #f9f9f9;
+}*/
+
+/*.md-whiteframe-z2 {
+	background-color: #fff;
+}*/
